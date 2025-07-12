@@ -42,3 +42,22 @@ func (r *CreateOppeningRequest) Validate() error {
 
 	return nil
 }
+
+type CreateOppeningUpdate struct {
+	Role     string `json:"role"`
+	Company  string `json:"company"`
+	Location string `json:"location"`
+	Remote   *bool  `json:"remote"`
+	Link     string `json:"link"`
+	Salary   int64  `json:"salary"`
+} 
+
+func (r *CreateOppeningUpdate) Validate() error {
+	if r.Company != "" || r.Role != "" || r.Link != "" || r.Link != "" || r.Remote != nil || r.Salary < 0 {
+		return nil
+	}
+
+	return fmt.Errorf("at least one field valid must be provied")
+}
+
+
